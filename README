@@ -1,0 +1,8 @@
+Fork of http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+to include common e-mail mistakes.
+
+e.g.
+
+  * "user@homtail.com" => "Did you mean: user@hotmail.com?"
+  * "userg@mail.com" => "Did you mean: user@gmail.com?"
+  * "user@yahoo.cmo" => "Did you mean: user@yahoo.com?"
