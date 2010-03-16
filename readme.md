@@ -13,6 +13,7 @@ _e.g._
 **Comments**: 
 
 Will display "Did you mistype your e-mail address?" if any part (separated by a ".") of the URL matches a common misspelling in the index. This is a problem, because it will either not catch or false positive the following valid e-mail addresses.
+
   * bob@*.co.uk (matches because "co" is a common mistype for "com")
   * bob@*.cm (which also happens to be a common mistype)
   
