@@ -10,7 +10,15 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#commentForm").validate();
+	$("#commentForm").validate({
+	 rules: {
+	   email: {
+	     required: true,
+	     email: true,
+	     mistypes: true
+	   }
+	 }
+	});
 });
 </script>
 
@@ -25,7 +33,7 @@ $(document).ready(function() {
 			<input id="cname" name="name" class="required" minlength="2" />
 		<p>
 			<label for="cemail">E-Mail (required)</label>
-			<input id="cemail" name="email" class="required mistypes" />
+			<input id="cemail" name="email" class="email" />
 		</p>
 		<p>
 			<label for="curl">URL (optional)</label>

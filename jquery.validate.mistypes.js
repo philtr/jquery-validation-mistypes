@@ -69,8 +69,6 @@ jQuery.validator.addMethod("mistypes", function(value, element) {
     
     '}');
     
-    // need to figure out how to separate domain and tld from value
-    // then return suggested result
     url_parts = value.split("@")[1].split(".");
     
     for(i=0; i < url_parts.length; i++)
