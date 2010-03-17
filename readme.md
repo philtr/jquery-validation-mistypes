@@ -10,7 +10,7 @@ _e.g._
 
 **Comments**: 
 
-The checkbox to say that the e-mail is typed correctly displays _whenever_ there's an error. I can't figure out how to determine which validation errors have been triggered.
+The JavaScript code in example.html could probable stand to be cleaned up.
 
 Not being able to display the suggested e-mail address has to do with the way that the jQuery validation plugin is written. The jQuery.validator.addMethod() function takes in three parameters:
 
