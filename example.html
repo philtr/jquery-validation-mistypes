@@ -19,7 +19,25 @@ $(document).ready(function() {
 	   }
 	 }
 	});
+	
+	function showMistypesCheckbox() {
+	 	 if($(this).hasClass("error")) { 
+	     $("#mistypes_checkbox").slideDown();
+	   }
+	}
+	
+	$("#cemail").bind("blur",showMistypesCheckbox);
+	
+	$("input.toggleMistypesCheck").click( function() {
+    if(this.checked) {
+      $("#cemail").rules("remove", "email mistypes");
+      } else { 
+        $("#cemail").rules("add", { email:true, mistypes:true });
+      }
+  });
+  
 });
+
 </script>
 
 </head>
@@ -33,7 +51,11 @@ $(document).ready(function() {
 			<input id="cname" name="name" class="required" minlength="2" />
 		<p>
 			<label for="cemail">E-Mail (required)</label>
-			<input id="cemail" name="email" class="email" />
+			<input id="cemail" name="email" /><br/>
+      <span id="mistypes_checkbox" style="display:none">
+        <input type="checkbox" id="no_mistypes" name="no_mistypes" class="toggleMistypesCheck" style="width: auto;" tabindex="1" />
+        <label for="no_mistypes" style="cursor:pointer">This really is my e-mail address, I didn't mistype it.</label>
+      </span>
 		</p>
 		<p>
 			<label for="curl">URL (optional)</label>

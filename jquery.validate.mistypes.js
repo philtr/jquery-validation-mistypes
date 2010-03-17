@@ -11,71 +11,79 @@
 
 jQuery.validator.addMethod("mistypes", function(value, element) {
     
-    flag = false;
-    // Dictionary of common misspellings
-    // Format: "wrong":"right"
-    var commonMisspellings = jQuery.parseJSON('{' +
+    if(!this.optional(element)) {
     
-      // Domains ===============================
+      // Dictionary of common misspellings
+      // Format: "wrong":"right"
+      var mistypes = jQuery.parseJSON('{' +
       
-      // hotmail
-      '"homtail":"hotmail",'  +
-      '"hotmale":"hotmail",'  +
-      '"hotmial":"hotmail",'  +
-      '"otmail":"hotmail",'   +
-      '"homail":"hotmail",'   +
-      '"hotmai":"hotmail",'   +
+        // Domains ===============================
+        '"domains":{' +
+        
+          // hotmail
+          '"homtail":"hotmail",'  +
+          '"hotmale":"hotmail",'  +
+          '"hotmial":"hotmail",'  +
+          '"otmail":"hotmail",'   +
+          '"homail":"hotmail",'   +
+          '"hotmai":"hotmail",'   +
+          
+          // gmail 
+          '"gamil":"gmail",'  +
+          '"gmial":"gmail",'  +
+          '"mgail":"gmail",'  +
+          '"gmali":"gmail",'  +
+          '"gmale":"gmail",'  +
+          '"gmal":"gmail",'   +
+          '"gmaid":"gmail",'  +
+          
+          // yahoo
+          '"yaho":"yahoo",'   +
+          '"yaahoo":"yahoo",' +
+          '"yahho":"yahoo",'  +
+          '"yahooo":"yahoo",' +
+          '"yaaho":"yahoo",'  +
+          '"ayhoo":"yahoo",'  +
+          '"yhaoo":"yahoo",'  +
+          '"yaoho":"yahoo",'  +
+          '"yaohoo":"yahoo",' +
+          
+        '},' +
+        
+        // TLDs ==================================
+        '"tlds":{' +
+        
+          // com
+          '"cmo":"com",'  +
+          '"ocm":"com",'  +
+          '"co":"com",'    +
+          '"cm":"com",'   +
+          
+          // net
+          '"nte":"net",'  +
+          '"ent":"net",'  +
+          '"ne":"net",'   +
+          '"nt":"net",'   +
+          
+          // org
+          '"ogr":"org",'  +
+          '"rog":"org",'  +
+          '"or":"org",'   +  
+          '"og":"org"'    +
       
-      // gmail 
-      '"gamil":"gmail",'  +
-      '"gmial":"gmail",'  +
-      '"mgail":"gmail",'  +
-      '"gmali":"gmail",'  +
-      '"gmale":"gmail",'  +
-      '"gmal":"gmail",'   +
-      '"gmaid":"gmail",'  +
+      '}}');
       
-      // yahoo
-      '"yaho":"yahoo",'   +
-      '"yaahoo":"yahoo",' +
-      '"yahho":"yahoo",'  +
-      '"yahooo":"yahoo",' +
-      '"yaaho":"yahoo",'  +
-      '"ayhoo":"yahoo",'  +
-      '"yhaoo":"yahoo",'  +
-      '"yaoho":"yahoo",'  +
-      '"yaohoo":"yahoo",' +
+      url_parts = value.split("@")[1].split(".");
       
+      for(i=0; i < url_parts.length-1; i++)
+        if(mistypes.domains[url_parts[i]])
+          return false;
       
-      // TLDs ==================================
-      
-      // com
-      '"cmo":"com",'  +
-      '"ocm":"com",'  +
-      '"co":"com",'    +
-      '"cm":"com",'   +
-      
-      // net
-      '"nte":"net",'  +
-      '"ent":"net",'  +
-      '"ne":"net",'   +
-      '"nt":"net",'   +
-      
-      // org
-      '"ogr":"org",'  +
-      '"rog":"org",'  +
-      '"or":"org",'   +  
-      '"og":"org"'    +
+      // only checks the last part
+      if(mistypes.tlds[url_parts[i]])
+          return false;
+    }
     
-    '}');
-    
-    url_parts = value.split("@")[1].split(".");
-    
-    for(i=0; i < url_parts.length; i++)
-      if(commonMisspellings[url_parts[i]])
-        flag = true;
-    
-    if(flag) return false;
-    else return true;
+    return true; //if we didn't find anything worth mentioning
     
 }, "Did you mistype your e-mail address?" );
