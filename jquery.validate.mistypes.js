@@ -15,63 +15,63 @@ jQuery.validator.addMethod("mistypes", function(value, element) {
     
       // Dictionary of common misspellings
       // Format: "wrong":"right"
-      var mistypes = jQuery.parseJSON('{' +
+      mistypes = {
       
         // Domains ===============================
-        '"domains":{' +
-        
-          // hotmail
-          '"homtail":"hotmail",'  +
-          '"hotmale":"hotmail",'  +
-          '"hotmial":"hotmail",'  +
-          '"otmail":"hotmail",'   +
-          '"homail":"hotmail",'   +
-          '"hotmai":"hotmail",'   +
-          
-          // gmail 
-          '"gamil":"gmail",'  +
-          '"gmial":"gmail",'  +
-          '"mgail":"gmail",'  +
-          '"gmali":"gmail",'  +
-          '"gmale":"gmail",'  +
-          '"gmal":"gmail",'   +
-          '"gmaid":"gmail",'  +
-          
-          // yahoo
-          '"yaho":"yahoo",'   +
-          '"yaahoo":"yahoo",' +
-          '"yahho":"yahoo",'  +
-          '"yahooo":"yahoo",' +
-          '"yaaho":"yahoo",'  +
-          '"ayhoo":"yahoo",'  +
-          '"yhaoo":"yahoo",'  +
-          '"yaoho":"yahoo",'  +
-          '"yaohoo":"yahoo",' +
-          
-        '},' +
-        
-        // TLDs ==================================
-        '"tlds":{' +
-        
-          // com
-          '"cmo":"com",'  +
-          '"ocm":"com",'  +
-          '"co":"com",'    +
-          '"cm":"com",'   +
-          
-          // net
-          '"nte":"net",'  +
-          '"ent":"net",'  +
-          '"ne":"net",'   +
-          '"nt":"net",'   +
-          
-          // org
-          '"ogr":"org",'  +
-          '"rog":"org",'  +
-          '"or":"org",'   +  
-          '"og":"org"'    +
-      
-      '}}');
+        "domains":{ 
+       
+         // hotmail
+         "homtail":"hotmail",  
+         "hotmale":"hotmail",  
+         "hotmial":"hotmail",  
+         "otmail":"hotmail",   
+         "homail":"hotmail",   
+         "hotmai":"hotmail",   
+         
+         // gmail 
+         "gamil":"gmail",  
+         "gmial":"gmail",  
+         "mgail":"gmail",  
+         "gmali":"gmail",  
+         "gmale":"gmail",  
+         "gmal":"gmail",   
+         "gmaid":"gmail",  
+         
+         // yahoo
+         "yaho":"yahoo",   
+         "yaahoo":"yahoo", 
+         "yahho":"yahoo",  
+         "yahooo":"yahoo", 
+         "yaaho":"yahoo",  
+         "ayhoo":"yahoo",  
+         "yhaoo":"yahoo",  
+         "yaoho":"yahoo",  
+         "yaohoo":"yahoo", 
+         
+       }, 
+       
+       // TLDs ==================================
+       "tlds":{ 
+       
+         // com
+         "cmo":"com",  
+         "ocm":"com",  
+         "co":"com",    
+         "cm":"com",   
+         
+         // net
+         "nte":"net",  
+         "ent":"net",  
+         "ne":"net",   
+         "nt":"net",   
+         
+         // org
+         "ogr":"org",  
+         "rog":"org",  
+         "or":"org",     
+         "og":"org"    
+     
+     }};
       
       url_parts = value.split("@")[1].split(".");
       
