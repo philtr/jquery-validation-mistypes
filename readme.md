@@ -6,16 +6,11 @@ _e.g._
   * "user@homtail.com" => "Did you mean: user@hotmail.com?"
   * "user@yahoo.cmo" => "Did you mean: user@yahoo.com?"
 
-**Current Status**: Partially working.
+**Current Status**: Mostly working.
 
 **Comments**: 
 
-Will display "Did you mistype your e-mail address?" if _any part_ of the URL (separated by a ".") matches a common misspelling in the index. This is a problem, because it will either not catch or false positive the following valid e-mail addresses:
-
-  * bob@*.co.uk (matches because "co" is a common mistype for "com")
-  * bob@*.cm (a TLD which also happens to be a common mistype for "com")
-  
-Once these e-mail addresses are flagged as mistypes, there is no way for the user to say, "Yes, that really _is_ my correct e-mail," and submit the form. Perhaps add a checkbox that displays when the mistype returns false and when checked will ignore mistype?
+The checkbox to say that the e-mail is typed correctly displays _whenever_ there's an error. I can't figure out how to determine which validation errors have been triggered.
 
 Not being able to display the suggested e-mail address has to do with the way that the jQuery validation plugin is written. The jQuery.validator.addMethod() function takes in three parameters:
 

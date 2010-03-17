@@ -21,8 +21,13 @@ $(document).ready(function() {
 	});
 	
 	function showMistypesCheckbox() {
-	 	 if($(this).hasClass("error")) { 
+	 	 if(!$(this).valid()) { 
 	     $("#mistypes_checkbox").slideDown();
+	   } else {
+	     if($(this).rules().mistypes)
+  	     $("#mistypes_checkbox").slideUp();
+  	   else
+  	     $("#mistypes_checkbox").slideDown();
 	   }
 	}
 	
@@ -30,10 +35,10 @@ $(document).ready(function() {
 	
 	$("input.toggleMistypesCheck").click( function() {
     if(this.checked) {
-      $("#cemail").rules("remove", "email mistypes");
-      } else { 
-        $("#cemail").rules("add", { email:true, mistypes:true });
-      }
+      $("#cemail").rules("remove", "mistypes");
+    } else { 
+      $("#cemail").rules("add", { mistypes:true });
+    }
   });
   
 });
@@ -51,10 +56,10 @@ $(document).ready(function() {
 			<input id="cname" name="name" class="required" minlength="2" />
 		<p>
 			<label for="cemail">E-Mail (required)</label>
-			<input id="cemail" name="email" /><br/>
+			<input id="cemail" name="email" class="required email" /><br/>
       <span id="mistypes_checkbox" style="display:none">
         <input type="checkbox" id="no_mistypes" name="no_mistypes" class="toggleMistypesCheck" style="width: auto;" tabindex="1" />
-        <label for="no_mistypes" style="cursor:pointer">This really is my e-mail address, I didn't mistype it.</label>
+        <label for="no_mistypes" style="cursor:pointer">This really is my e-mail address; I didn't misspell it.</label>
       </span>
 		</p>
 		<p>
